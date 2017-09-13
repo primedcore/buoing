@@ -1,64 +1,64 @@
-var c = document.getElementById('box'), //canvas
-		ctx = c.getContext('2d'), //canvas context
-		cBig = document.getElementById('screen'), //canvas
-		ctxBig = cBig.getContext('2d');
+var c = document.getElementById('box'), // canvas
+		ctx = c.getContext('2d'), // canvas context
+		cBig = document.getElementById('screen'), // second canvas
+		ctxBig = cBig.getContext('2d'); // large canvas context
 
-cBig.style.visibility = 'none';
+cBig.style.visibility = 'none'; // hide larger canvas to draw box
 
-var ballPosX = c.width / 2 - 15, //horizontal ball position
-  ballPosY = 559, //vertical ball position
-  ballVelX = 5.9, //horizontal ball speed
-  ballVelY = 20, //vertical ball speed
-  onGround = true, //ball touching ground
-  ballSize = 30, //ball size
-  ballGrav = 0.55; //ball gravity
+var ballPosX = c.width / 2 - 15, // horizontal ball position value
+  ballPosY = 559, // vertical ball position value
+  ballVelX = 5.9, // horizontal ball speed (velocity) value
+  ballVelY = 20, // vertical ball speed (velocity) value
+  onGround = true, // ball touching ground (boolean)
+  ballSize = 30, // ball size value
+  ballGrav = 0.55; // game gravity (does not affect points due to randomization)
 
-// point position
+// point1 position
 var x = Math.floor(Math.random() * 595),
   y = Math.floor(Math.random() * -500),
   x2 = Math.floor(Math.random() * 595),
   y2 = Math.floor(Math.random() * -1000);
-// point velocity
+// point1 velocity
 var pointVelX = Math.random(),
   pointVelY = Math.random() * 10,
   pointVelX2 = Math.random(),
   pointVelY2 = Math.random() * 6,
   pointSize = 5; // point size, feel free to change to make it easier (or harder)
 
-window.addEventListener("mousedown", startJump, false);
-window.addEventListener("mouseup", endJump, false);
+window.addEventListener("mousedown", startJump, false); // event listener for a mouse press
+window.addEventListener("mouseup", endJump, false); // event listener for a mouse release
 
-loop();
+loop(); // update function, async
 
-function startJump() {
-  if (onGround) {
-    ballVelY = -20.0;
-    onGround = false;
+function startJump() { // function ran on click
+  if (onGround) { // if the ball is on the ground
+    ballVelY = -20.0; // change the ball velocity (speed) to -20 so that it "floats"
+    onGround = false; // and it's not on ground anymore
   }
 }
 
-function endJump() {
-  if (ballVelY < -10.0)
-    ballVelY = -10.0;
+function endJump() { // function ran on mouse release
+  if (ballVelY < -10.0) // if the vertical velocity is lower than -10
+    ballVelY = -10.0; // change it to -10
 }
 
-function loop() {
-	if (ballSize >= 120) {
-		newPhysics();
-		newRender();
-	} else {
-  update();
-  render();
+function loop() { // canvas updating function
+	if (ballSize >= 120) { // if the ball size is bigger than or equal to 120
+		newPhysics(); // call newPhysics function
+		newRender(); // and newRender function
+	} else { // otherwise
+  update(); // call logic math function
+  render(); // and drawing function
 	}
-  window.setTimeout(loop, 16.5);
+  window.setTimeout(loop, 16.5); // call loop() again in 16.5 milliseconds (60fps relative display)
 }
 
-function update() {
-  ballVelY += ballGrav;
-  ballPosY += ballVelY;
-  ballPosX += ballVelX;
+function update() { // update function
+  ballVelY += ballGrav; // core game physics, gravity
+  ballPosY += ballVelY; // core game physics, vertical acceleration
+  ballPosX += ballVelX; // core game physics, horizontal acceleration
   if (ballPosY > 600 - (ballSize + 40)) {
-    onGround = true;
+    onGround = true; // double jump function
   }
   if (ballPosY <= ballSize + 0.1 * ballSize) {
     ballVelY = 4;
@@ -141,6 +141,7 @@ function render() {
   ctx.fillRect(x2, y2, pointSize, pointSize);
 }
 // ***************************NEW STUFF
+// unused due to buggy behaviours
 /* function newPhysics() {
 	ballVelY += ballGrav;
   ballPosY += ballVelY;
