@@ -16,7 +16,7 @@ body {
 		background: floralwhite;
 		visibility: hidden;
 }
-/* unused style
+/* unused style, initially intended for an animation (feel free to use!)
 .square {
     width: 50px;
     height: 50px;
@@ -47,4 +47,5 @@ body {
 	-webkit-transform: rotate(720deg);
 }
 }
+* it'd be nice to credit me, but you don't have to. do what you will
 */
