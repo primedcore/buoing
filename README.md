@@ -1,2 +1,2 @@
 # buoing
-The Buoing game code
+The Buoing: Black Hole game code, a js13kgames.com entry.
