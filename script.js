@@ -13,16 +13,20 @@ var ballPosX = c.width / 2 - 15, // horizontal ball position value
   ballSize = 30, // ball size value
   ballGrav = 0.55; // game gravity (does not affect points due to randomization)
 
+// random position values
 // point1 position
 var x = Math.floor(Math.random() * 595),
   y = Math.floor(Math.random() * -500),
+// point2 position
   x2 = Math.floor(Math.random() * 595),
   y2 = Math.floor(Math.random() * -1000);
+
 // point1 velocity
-var pointVelX = Math.random(),
-  pointVelY = Math.random() * 10,
-  pointVelX2 = Math.random(),
-  pointVelY2 = Math.random() * 6,
+var pointVelX = Math.random(), // any number between 0 and 1
+  pointVelY = Math.random() * 10, // any number between 0 and 10
+// point1 velocity
+  pointVelX2 = Math.random(), // any number between 0 and 1
+  pointVelY2 = Math.random() * 6, // any number between 0 and 6
   pointSize = 5; // point size, feel free to change to make it easier (or harder)
 
 window.addEventListener("mousedown", startJump, false); // event listener for a mouse press
@@ -32,8 +36,8 @@ loop(); // update function, async
 
 function startJump() { // function ran on click
   if (onGround) { // if the ball is on the ground
-    ballVelY = -20.0; // change the ball velocity (speed) to -20 so that it "floats"
-    onGround = false; // and it's not on ground anymore
+    ballVelY = -20.0; // change the ball velocity (speed) to -20 so that it flies upwards from the ground
+    onGround = false; // and change onGround to false
   }
 }
 
@@ -140,7 +144,6 @@ function render() {
   // point2
   ctx.fillRect(x2, y2, pointSize, pointSize);
 }
-// ***************************NEW STUFF
 // unused due to buggy behaviours
 /* function newPhysics() {
 	ballVelY += ballGrav;
@@ -301,4 +304,9 @@ function newRender() {
   // point2
   ctxBig.fillRect(x2, y2, pointSize, pointSize);
 }
-// Problems - on ballSize = 110, the ball (and everything on the box canvas) stops and nothing else happens. Possible causes - not referencing to hide "box" canvas and show new "screen" canvas; problems in the newPhysics and newRender functions (unlikely as no error is shown in the Console in Chrome)
+/*
+Problems - on ballSize = 110, the ball (and everything on the box canvas)
+stops and nothing else happens.
+Possible causes - not referencing to hide "box" canvas and show new "screen" canvas;
+problems in the newPhysics and newRender functions (unlikely as no error is shown in console)
+*/
