@@ -1,9 +1,5 @@
 var c = document.getElementById('box'), // canvas
-		ctx = c.getContext('2d'), // canvas context
-		cBig = document.getElementById('screen'), // second canvas
-		ctxBig = cBig.getContext('2d'); // large canvas context
-
-cBig.style.visibility = 'none'; // hide larger canvas to draw box
+		ctx = c.getContext('2d'); // canvas context
 
 var ballPosX = c.width / 2 - 15, // horizontal ball position value
   ballPosY = 559, // vertical ball position value
@@ -123,7 +119,7 @@ function update() { // update function
     } else {
       ballSize += 5;
     }
-    console.log("2 " + pointVelY2 + " " + ballSize);
+    //console.log("2 " + pointVelY2 + " " + ballSize);
     x2 = Math.floor(Math.random() * 595);
     y2 = Math.floor(Math.random() * -1000);
     pointVelX2 = Math.random();
@@ -283,7 +279,7 @@ function newPhysics() {
     } else {
       ballSize += 5;
     }
-    console.log("2 " + pointVelY2 + " " + ballSize);
+    //console.log("2 " + pointVelY2 + " " + ballSize);
     x2 = Math.floor(Math.random() * 595);
     y2 = Math.floor(Math.random() * -1000);
     pointVelX2 = Math.random();
@@ -292,17 +288,17 @@ function newPhysics() {
 }
 
 function newRender() {
-  ctxBig.clearRect(0, 0, cBig.width, cBig.height);
-  ctxBig.beginPath();
-  ctxBig.arc(ballPosX, ballPosY, ballSize, 0, Math.PI * 2, true);
-  ctxBig.closePath();
-  ctxBig.fill();
-  ctxBig.closePath();
-  ctxBig.stroke();
+  ctx.clearRect(0, 0, c.width, c.height);
+  ctx.beginPath();
+  ctx.arc(ballPosX, ballPosY, ballSize, 0, Math.PI * 2, true);
+  ctx.closePath();
+  ctx.fill();
+  ctx.closePath();
+  ctx.stroke();
   // point
-  ctxBig.fillRect(x, y, pointSize, pointSize);
+  ctx.fillRect(x, y, pointSize, pointSize);
   // point2
-  ctxBig.fillRect(x2, y2, pointSize, pointSize);
+  ctx.fillRect(x2, y2, pointSize, pointSize);
 }
 /*
 Problems - on ballSize = 110, the ball (and everything on the box canvas)
