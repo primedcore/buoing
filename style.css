@@ -16,36 +16,30 @@ body {
 		background: floralwhite;
 		visibility: hidden;
 }
-/* unused style, initially intended for an animation (feel free to use!)
-.square {
+.divsmall {
     width: 50px;
     height: 50px;
     background-color: yellow;
     margin: 40px auto;
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out, background-color 0.5s ease;
-}
-.square {
     width: 100px;
     height: 100px;
+}
+.square {
     animation-name: loading;
     animation-duration: 3s;
-    animation-iteration-count: 3;
+    animation-iteration-count: 1;
     animation-delay: 0.5s;
 }
 @keyframes loading {
 0% {
-	background-color: white;
 }
 50% {
-	background-color: black;
 	transform: rotate(360deg);
 	-webkit-transform: rotate(360deg);
 }
 100% {
-	background-color: white;
 	transform: rotate(720deg);
 	-webkit-transform: rotate(720deg);
 }
 }
-* it'd be nice to credit me, but you don't have to. do what you will
-*/
